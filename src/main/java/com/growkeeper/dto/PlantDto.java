@@ -1,48 +1,26 @@
-package com.growkeeper.domain;
+package com.growkeeper.dto;
 
 import com.growkeeper.enums.CycleOptions;
 import com.growkeeper.enums.InsolationOptions;
 import com.growkeeper.enums.WateringOptions;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@NoArgsConstructor
 @Setter
-public class Plant {
+@Getter
+public class PlantDto {
 
-    @Id
-    @Column(name = "plant_scientific_name", unique = true)
     private String plantScientificName;
-
-    @Column(name = "plant_common_name")
     private String plantCommonName;
-
-    @Column(name = "plant_edible")
     private Boolean plantEdible;
-
-    @Column(name = "plant_watering")
     private WateringOptions plantWatering;
-
-    @Column(name = "plant_insolation")
     private InsolationOptions plantSunlight;
-
-    @Column(name = "plant_cycle")
     private CycleOptions plantCycle;
-
-    @Column(name = "plant_poisonous")
     private Boolean plantPoisonous;
-
-    @Column(name = "plant_depth")
     private Float plantDepth;
-
-    @Column(name = "plant_diameter")
     private Float plantDiameter;
 }

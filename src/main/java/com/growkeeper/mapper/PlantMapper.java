@@ -13,13 +13,13 @@ public class PlantMapper {
         return new Plant(
             plantDto.getPlantScientificName(),
             plantDto.getPlantCommonName(),
-            plantDto.getPlantEdible(),
+            //plantDto.getPlantEdible(),
             plantDto.getPlantWatering(),
             plantDto.getPlantSunlight(),
-            plantDto.getPlantCycle(),
-            plantDto.getPlantPoisonous(),
-            plantDto.getPlantDepth(),
-            plantDto.getPlantDiameter()
+            //plantDto.getPlantCycle(),
+            plantDto.getPlantPoisonous()
+            //plantDto.getPlantDepth(),
+            //plantDto.getPlantDiameter()
         );
     }
 
@@ -27,13 +27,13 @@ public class PlantMapper {
         return new PlantDto(
                 plant.getPlantScientificName(),
                 plant.getPlantCommonName(),
-                plant.getPlantEdible(),
+                //plant.getPlantEdible(),
                 plant.getPlantWatering(),
                 plant.getPlantSunlight(),
-                plant.getPlantCycle(),
-                plant.getPlantPoisonous(),
-                plant.getPlantDepth(),
-                plant.getPlantDiameter()
+                //plant.getPlantCycle(),
+                plant.getPlantPoisonous()
+                //plant.getPlantDepth(),
+                //plant.getPlantDiameter()
         );
     }
 

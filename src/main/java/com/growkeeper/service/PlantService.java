@@ -30,13 +30,13 @@ public class PlantService {
             Plant plantModificated = plantRepository.findById(plantCity).get();
             plantModificated.setPlantScientificName(plant.getPlantScientificName());
             plantModificated.setPlantCommonName(plant.getPlantCommonName());
-            plantModificated.setPlantEdible(plant.getPlantEdible());
+//            plantModificated.setPlantEdible(plant.getPlantEdible());
             plantModificated.setPlantWatering(plant.getPlantWatering());
             plantModificated.setPlantSunlight(plant.getPlantSunlight());
-            plantModificated.setPlantCycle(plant.getPlantCycle());
+//            plantModificated.setPlantCycle(plant.getPlantCycle());
             plantModificated.setPlantPoisonous(plant.getPlantPoisonous());
-            plantModificated.setPlantDepth(plant.getPlantDepth());
-            plantModificated.setPlantDiameter(plant.getPlantDiameter());
+//            plantModificated.setPlantDepth(plant.getPlantDepth());
+//            plantModificated.setPlantDiameter(plant.getPlantDiameter());
             plantRepository.save(plantModificated);
         } else {
             throw new PlantNotFoundException();

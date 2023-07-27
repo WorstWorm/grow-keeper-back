@@ -16,11 +16,11 @@ public class PlantDto {
 
     private String plantScientificName;
     private String plantCommonName;
-    private Boolean plantEdible;
+    //private Boolean plantEdible;
     private WateringOptions plantWatering;
     private InsolationOptions plantSunlight;
-    private CycleOptions plantCycle;
+    //private CycleOptions plantCycle;
     private Boolean plantPoisonous;
-    private Float plantDepth;
-    private Float plantDiameter;
+    //private Float plantDepth;
+    //private Float plantDiameter;
 }

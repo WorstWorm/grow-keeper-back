@@ -25,8 +25,8 @@ public class Plant {
     @Column(name = "plant_common_name")
     private String plantCommonName;
 
-    @Column(name = "plant_edible")
-    private Boolean plantEdible;
+//    @Column(name = "plant_edible")
+//    private Boolean plantEdible;
 
     @Column(name = "plant_watering")
     private WateringOptions plantWatering;
@@ -34,15 +34,15 @@ public class Plant {
     @Column(name = "plant_insolation")
     private InsolationOptions plantSunlight;
 
-    @Column(name = "plant_cycle")
-    private CycleOptions plantCycle;
+//    @Column(name = "plant_cycle")
+//    private CycleOptions plantCycle;
 
     @Column(name = "plant_poisonous")
     private Boolean plantPoisonous;
 
-    @Column(name = "plant_depth")
-    private Float plantDepth;
-
-    @Column(name = "plant_diameter")
-    private Float plantDiameter;
+//    @Column(name = "plant_depth")
+//    private Float plantDepth;
+//
+//    @Column(name = "plant_diameter")
+//    private Float plantDiameter;
 }

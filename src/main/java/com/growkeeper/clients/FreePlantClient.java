@@ -1,22 +1,15 @@
 package com.growkeeper.clients;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.growkeeper.config.FreePlantConfig;
-import com.growkeeper.dto.FreePlantBasicsPlantDto;
-import com.growkeeper.dto.FreePlantDetailedPlantDto;
-import com.growkeeper.dto.PlantDto;
-import lombok.NoArgsConstructor;
+import com.growkeeper.dto.FreePlantDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -24,23 +17,21 @@ public class FreePlantClient {
     private final FreePlantConfig freePlantConfig;
     private final RestTemplate restTemplate;
 
-    private URI buildUrlForIdSearch(String plantScientificName) {
+    private URI buildUrl(String plantName) {
         return UriComponentsBuilder.fromHttpUrl(freePlantConfig.getFreeplantApiEndpoint() + "/species-list")
                 .queryParam("key", freePlantConfig.getFreeplantApiKey())
-                .queryParam("q", plantScientificName)
+                .queryParam("q", plantName)
                 .build().encode().toUri();
     }
 
-    private URI buildUrlForPlantDetails(int freeplantId) {
-        return UriComponentsBuilder.fromHttpUrl(freePlantConfig.getFreeplantApiEndpoint() + "/species/details/" + freeplantId)
-                .queryParam("key", freePlantConfig.getFreeplantApiKey())
-                .build().encode().toUri();
-    }
+    public void getId(String name) throws JsonProcessingException {
+//        String url = "https://perenual.com/api/species-list?key=sk-izWf64c24136c5e831634&q=" + name;
+        String data = restTemplate.getForObject(buildUrl(name), String.class);
+        data = data.substring((data.indexOf("[")+1), data.lastIndexOf(",\"default"));
+        data += "}";
+        ObjectMapper objectMapper = new ObjectMapper();
+        FreePlantDto plant = objectMapper.readValue(data, FreePlantDto.class);
+        System.out.println(plant.getCommon_name() + " - " + plant.getScientific_name()[0] + " - " + plant.getSunlight()[0] + "/" + plant.getWatering());
 
-    public FreePlantDetailedPlantDto getPlantDetailsFromFreeplant(String plantScientificName) {
-        FreePlantBasicsPlantDto[] listOfPlantIdByScientificName = restTemplate.getForObject(buildUrlForIdSearch(plantScientificName), FreePlantBasicsPlantDto[].class);
-//        FreePlantBasicsPlantDto[] listOfPlantIdByScientificName = restTemplate.getForObject("https://perenual.com/api/species-list?key=sk-izWf64c24136c5e831634&q=Solanum lycopersicum", FreePlantBasicsPlantDto[].class);
-        System.out.println("first request done");
-        return restTemplate.getForObject(buildUrlForPlantDetails(listOfPlantIdByScientificName[0].getPlantId()), FreePlantDetailedPlantDto.class);
     }
 }

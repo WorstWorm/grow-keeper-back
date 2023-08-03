@@ -8,11 +8,14 @@ import org.springframework.stereotype.Component;
 @Getter
 @NoArgsConstructor
 @Component
-public class FreePlantConfig {
+public class PlantNetConfig {
 
-    @Value("${freeplant.api.endpoint}")
-    private String freeplantApiEndpoint;
+    @Value("${plantnet.api.endpoint}")
+    private String plantnetApiEndpoint;
 
-    @Value("${freeplant.api.key}")
-    private String freeplantApiKey;
+    @Value("${plantnet.api.key}")
+    private String plantnetApiKey;
+
+    @Value("${image.src}")
+    private String imageSource;
 }

@@ -25,13 +25,11 @@ public class FreePlantClient {
     }
 
     public void getId(String name) throws JsonProcessingException {
-//        String url = "https://perenual.com/api/species-list?key=sk-izWf64c24136c5e831634&q=" + name;
         String data = restTemplate.getForObject(buildUrl(name), String.class);
         data = data.substring((data.indexOf("[")+1), data.lastIndexOf(",\"default"));
         data += "}";
         ObjectMapper objectMapper = new ObjectMapper();
         FreePlantDto plant = objectMapper.readValue(data, FreePlantDto.class);
         System.out.println(plant.getCommon_name() + " - " + plant.getScientific_name()[0] + " - " + plant.getSunlight()[0] + "/" + plant.getWatering());
-
     }
 }

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 public class FreePlantController {
     private final FreePlantService freePlantService;
 
-    @GetMapping("/{id}")
-    public void getName(@PathVariable("id") String id) throws JsonProcessingException {
-        freePlantService.getInfo(id);
+    @GetMapping("/{plant}")
+    public void getName(@PathVariable("plant") String plant) throws JsonProcessingException {
+        freePlantService.getInfo(plant);
     }
 }
 

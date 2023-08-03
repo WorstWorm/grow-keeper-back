@@ -26,7 +26,7 @@ public class FreePlantClient {
 
     public void getId(String name) throws JsonProcessingException {
         String data = restTemplate.getForObject(buildUrl(name), String.class);
-        data = data.substring((data.indexOf("[")+1), data.lastIndexOf(",\"default"));
+        data = data.substring((data.indexOf("[")+1), (data.lastIndexOf(",\"default")));
         data += "}";
         ObjectMapper objectMapper = new ObjectMapper();
         FreePlantDto plant = objectMapper.readValue(data, FreePlantDto.class);

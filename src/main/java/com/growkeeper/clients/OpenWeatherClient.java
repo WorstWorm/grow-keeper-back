@@ -1,24 +1,33 @@
 package com.growkeeper.clients;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.growkeeper.config.OpenWeatherConfig;
-import com.growkeeper.dto.OpenWeatherObjectDto;
-import com.growkeeper.weatherDto.Root;
+import com.growkeeper.dto.api.openWeatherDto.city.OpenWeatherCityRootDto;
+import com.growkeeper.dto.api.openWeatherDto.weather.OpenWeatherListDto;
+import com.growkeeper.dto.api.openWeatherDto.weather.OpenWeatherRootDto;
+import com.growkeeper.mapper.LocationMapper;
+import com.growkeeper.mapper.WeatherMapper;
+import com.growkeeper.service.LocationService;
+import com.growkeeper.service.WeatherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Arrays;
 
 @Component
 @RequiredArgsConstructor
 public class OpenWeatherClient {
     private final OpenWeatherConfig openWeatherConfig;
     private final RestTemplate restTemplate;
+    private final LocationService locationService;
+    private final LocationMapper locationMapper;
+    private final WeatherService weatherService;
+    private final WeatherMapper weatherMapper;
 
-    private URI buildUrlForWeather(String lat, String lon) {
+
+    private URI buildUrlForWeather(double lat, double lon) {
         return UriComponentsBuilder.fromHttpUrl(openWeatherConfig.getOpenweatherApiWeatherEndpoint())
                 .queryParam("lat", lat)
                 .queryParam("lon", lon)
@@ -35,27 +44,31 @@ public class OpenWeatherClient {
                 .build().encode().toUri();
     }
 
-    public void getWeather(String lat, String lon) throws JsonProcessingException {
+    public void getLocation(String city) {
+        OpenWeatherCityRootDto[] openWeatherCityRootDto = restTemplate.getForObject(buildUrlForLocation(city), OpenWeatherCityRootDto[].class);
+        locationService.createLocation(locationMapper.mapToLocation(openWeatherCityRootDto[0]));
+    }
+
+    public void getWeather(double lat, double lon) {
+        OpenWeatherRootDto openWeatherRootDto = restTemplate.getForObject(buildUrlForWeather(lat, lon), OpenWeatherRootDto.class);
+        weatherService.addWeatherInBulk(weatherMapper.mapToWeatherList(openWeatherRootDto.getOpenWeatherListDtos()));
+    }
+
+    /*
+    public void getWeather(double lat, double lon) throws JsonProcessingException {
         String data = restTemplate.getForObject(buildUrlForWeather(lat, lon), String.class);
         data = data.substring(data.indexOf("\"list\":")+7, data.lastIndexOf(",\"city\":"));
         System.out.println(data);
         ObjectMapper om = new ObjectMapper();
-        Root[] roots = om.readValue(data, Root[].class);
-        for(Root r : roots){
+        OpenWeatherWeatherRootDto[] openWeatherWeatherRootDtos = om.readValue(data, OpenWeatherWeatherRootDto[].class);
+        for(OpenWeatherWeatherRootDto r : openWeatherWeatherRootDtos){
             System.out.println(r.getDt_txt() + " - "
-                    + r.getWeather().get(0).getMain() + "; "
-                    + "temp: " + r.getMain().getTemp() + "; "
-                    + "wind: " + r.getWind().getSpeed() + "; "
-//                    + "rain: " + r.getRain().get_3h() + "; "
-                    + "clouds: " + r.getClouds().getAll() + ";");
+                    + r.getOpenWeatherWeatherDto().get(0).getMain() + "; "
+                    + "temp: " + r.getOpenWeatherMainDto().getTemp() + "; "
+                    + "wind: " + r.getOpenWeatherWindDto().getSpeed() + "; "
+                    + "rain: " + r.getOpenWeatherRainDto().get_3h() + "; "
+                    + "clouds: " + r.getOpenWeatherCloudsDto().getAll() + ";");
         }
     }
-
-    public void getLocation(String city) {
-        String data = restTemplate.getForObject(buildUrlForLocation(city), String.class);
-        String lat = data.substring((data.indexOf("\"lat\":"))+6, (data.lastIndexOf(",\"lon\":")));
-        String lon = data.substring((data.indexOf("\"lon\":"))+6, (data.lastIndexOf(",\"country")));
-        System.out.println(lat+"/"+lon);
-
-    }
+     */
 }

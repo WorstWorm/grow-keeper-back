@@ -1,4 +1,4 @@
-package com.growkeeper.dto;
+package com.growkeeper.dto.api.freePlantDto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -3,7 +3,7 @@ package com.growkeeper.clients;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.growkeeper.config.FreePlantConfig;
-import com.growkeeper.dto.FreePlantDto;
+import com.growkeeper.dto.api.freePlantDto.FreePlantDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

@@ -1,6 +1,6 @@
-package com.growkeeper.controller;
+package com.growkeeper.controller.api;
 
-import com.growkeeper.service.PlantNetService;
+import com.growkeeper.service.api.PlantNetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

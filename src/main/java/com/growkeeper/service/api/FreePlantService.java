@@ -1,4 +1,4 @@
-package com.growkeeper.service;
+package com.growkeeper.service.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.growkeeper.clients.FreePlantClient;

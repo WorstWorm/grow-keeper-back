@@ -12,6 +12,7 @@ import lombok.Setter;
 public class LocationDto {
 
     private String locationCity;
+    private String locationState;
     private String locationCountry;
     private Double locationLatitude;
     private Double locationLongitude;

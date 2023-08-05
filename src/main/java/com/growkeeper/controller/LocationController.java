@@ -27,10 +27,4 @@ public class LocationController {
         locationService.createLocation(locationMapper.mapToLocation(locationDto));
         return ResponseEntity.ok().build();
     }
-
-    @PutMapping(path="/{id}", consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LocationDto> updateLocation(@PathVariable("id") String city, @RequestBody LocationDto locationDto) {
-        locationService.updateLocation(city, locationMapper.mapToLocation(locationDto));
-        return ResponseEntity.ok(locationMapper.mapToLocationDto(locationService.getLocation(locationDto.getLocationCity())));
-    }
 }

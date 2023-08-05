@@ -1,14 +1,16 @@
-package com.growkeeper.weatherDto;
+package com.growkeeper.dto.api.openWeatherDto.weather;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Clouds {
-    @JsonProperty("all")
-    int all;
+public class OpenWeatherRootDto {
+    @JsonProperty("list")
+    List<OpenWeatherListDto> openWeatherListDtos;
 }

@@ -1,4 +1,4 @@
-package com.growkeeper.service;
+package com.growkeeper.service.api;
 
 import com.growkeeper.clients.PlantNetClient;
 import lombok.RequiredArgsConstructor;

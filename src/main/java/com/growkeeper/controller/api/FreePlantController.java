@@ -1,7 +1,7 @@
-package com.growkeeper.controller;
+package com.growkeeper.controller.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.growkeeper.service.FreePlantService;
+import com.growkeeper.service.api.FreePlantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

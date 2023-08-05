@@ -6,6 +6,8 @@ import com.growkeeper.repository.WeatherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -13,35 +15,33 @@ import java.util.List;
 public class WeatherService {
     private final WeatherRepository weatherRepository;
 
-    public Weather getWeather(Integer weatherId) {
-        return weatherRepository.findById(weatherId).orElseThrow(WeatherNotFoundException::new);
+    public Weather getWeather(LocalDateTime time) {
+        return weatherRepository.findByWeatherTime(time).orElseThrow(WeatherNotFoundException::new);
     }
 
     public List<Weather> getWeathers() {
         return weatherRepository.findAll();
     }
 
-    public void createWeather(Weather weather) {
+    public void addWeather(Weather weather) {
         weatherRepository.save(weather);
-    }
-
-    public void updateWeather(Integer weatherId, Weather weather)  {
-        if(weatherRepository.findById(weatherId).isPresent()) {
-            Weather weatherModificated = weatherRepository.findById(weatherId).get();
-            weatherModificated.setWeatherId(weather.getWeatherId());
-            weatherModificated.setWeatherTemperatureAvrg(weather.getWeatherTemperatureAvrg());
-            weatherModificated.setWeatherClouds(weather.getWeatherClouds());
-            weatherModificated.setWeatherWind(weather.getWeatherWind());
-            weatherModificated.setWeatherType(weather.getWeatherType());
-            weatherRepository.save(weatherModificated);
-        } else {
-            throw new WeatherNotFoundException();
+        List<Weather> weatherList = weatherRepository.findAll();
+        if(weatherList.size()>1) {
+            Collections.sort(weatherList);
+            weatherRepository.delete(weatherList.get(0));
         }
     }
 
-    public void deleteWeather(Integer weatherId)  {
-        if(weatherRepository.findById(weatherId).isPresent()) {
-            weatherRepository.deleteById(weatherId);
+    public void addWeatherInBulk(List<Weather> weatherList) {
+        weatherRepository.deleteAll();
+        for(Weather w : weatherList) {
+            weatherRepository.save(w);
+        }
+    }
+
+    public void deleteWeather(LocalDateTime time)  {
+        if(weatherRepository.findByWeatherTime(time).isPresent()) {
+            weatherRepository.deleteByWeatherTime(time);
         } else {
             throw new WeatherNotFoundException();
         }

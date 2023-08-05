@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -19,10 +20,10 @@ public class WeatherController {
     private final WeatherService weatherService;
     private final WeatherMapper weatherMapper;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<WeatherDto> getWeather(@PathVariable("id") int id) throws WeatherNotFoundException {
-        return ResponseEntity.ok(weatherMapper.mapToWeatherDto(weatherService.getWeather(id)));
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<WeatherDto> getWeather(@PathVariable("id") int id) throws WeatherNotFoundException {
+//        return ResponseEntity.ok(weatherMapper.mapToWeatherDto(weatherService.getWeather(id)));
+//    }
 
     @GetMapping()
     public ResponseEntity<List<WeatherDto>> getWeathers() {
@@ -30,20 +31,14 @@ public class WeatherController {
     }
 
     @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createWeather(@RequestBody WeatherDto weatherDto) {
-        weatherService.createWeather(weatherMapper.mapToWeather(weatherDto));
+    public ResponseEntity<Void> addWeather(@RequestBody WeatherDto weatherDto) {
+        weatherService.addWeather(weatherMapper.mapToWeather(weatherDto));
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(path="/{id}", consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WeatherDto> updateWeather(@PathVariable("id") int id, @RequestBody WeatherDto weatherDto) {
-        weatherService.updateWeather(id, weatherMapper.mapToWeather(weatherDto));
-        return ResponseEntity.ok(weatherMapper.mapToWeatherDto(weatherService.getWeather(weatherDto.getWeatherId())));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteWeather(@PathVariable("id") int id) throws WeatherNotFoundException {
-        weatherService.deleteWeather(id);
+    @DeleteMapping("/{time}")
+    public ResponseEntity<Void> deleteWeather(@PathVariable("time") LocalDateTime time) throws WeatherNotFoundException {
+        weatherService.deleteWeather(time);
         return ResponseEntity.ok().build();
     }
 }

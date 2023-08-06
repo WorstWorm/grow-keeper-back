@@ -1,6 +1,5 @@
 package com.growkeeper.controller.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.growkeeper.service.api.OpenWeatherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ public class OpenWeatherController {
     private final OpenWeatherService openWeatherService;
 
     @GetMapping("/{lat}/{lon}")
-    public void getName(@PathVariable("lat") double lat, @PathVariable("lon") double lon) throws JsonProcessingException {
+    public void getName(@PathVariable("lat") double lat, @PathVariable("lon") double lon) {
         openWeatherService.getWeather(lat, lon);
     }
 

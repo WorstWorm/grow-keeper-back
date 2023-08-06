@@ -1,6 +1,5 @@
 package com.growkeeper.service.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.growkeeper.clients.OpenWeatherClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class OpenWeatherService {
     private final OpenWeatherClient openWeatherClient;
 
-    public void getWeather(double lat, double lon) throws JsonProcessingException {
+    public void getWeather(double lat, double lon) {
         openWeatherClient.getWeather(lat, lon);
     }
 

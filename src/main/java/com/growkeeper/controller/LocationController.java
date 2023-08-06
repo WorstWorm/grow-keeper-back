@@ -24,7 +24,7 @@ public class LocationController {
 
     @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createLocation(@RequestBody LocationDto locationDto) {
-        locationService.createLocation(locationMapper.mapToLocation(locationDto));
+        locationService.addLocation(locationMapper.mapToLocation(locationDto));
         return ResponseEntity.ok().build();
     }
 }

@@ -21,21 +21,11 @@ public class PlantService {
         return plantRepository.findAll();
     }
 
-    public void createPlant(Plant plant) {
-        plantRepository.save(plant);
-    }
-
-    public void updatePlant(String plantCity, Plant plant) {
-        if (plantRepository.findById(plantCity).isPresent()) {
-            Plant plantModificated = plantRepository.findById(plantCity).get();
-            plantModificated.setPlantScientificName(plant.getPlantScientificName());
-            plantModificated.setPlantCommonName(plant.getPlantCommonName());
-            plantModificated.setPlantWatering(plant.getPlantWatering());
-            plantModificated.setPlantSunlight(plant.getPlantSunlight());
-            plantRepository.save(plantModificated);
-        } else {
-            throw new PlantNotFoundException();
+    public void addPlant(Plant plant) {
+        if(plantRepository.findById(plant.getPlantScientificName()).isPresent()) {
+            plantRepository.deleteById(plant.getPlantScientificName());
         }
+        plantRepository.save(plant);
     }
 
     public void deletePlant(String plantScientificName)  {

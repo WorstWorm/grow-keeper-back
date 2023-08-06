@@ -25,7 +25,7 @@ public class WeatherMapper {
 
     public Weather mapToWeather(final OpenWeatherListDto openWeatherListDto) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        Double rain = 0.0;
+        double rain = 0.0;
         if(openWeatherListDto.getOpenWeatherRainDto() != null) {
             rain = openWeatherListDto.getOpenWeatherRainDto().get_3h();
         }

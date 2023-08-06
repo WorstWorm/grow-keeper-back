@@ -1,9 +1,9 @@
 package com.growkeeper.clients;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.growkeeper.config.FreePlantConfig;
-import com.growkeeper.dto.api.freePlantDto.FreePlantDto;
+import com.growkeeper.dto.api.freePlantDto.FreePlantRootDto;
+import com.growkeeper.service.PlantService;
+import com.growkeeper.mapper.PlantMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +16,8 @@ import java.net.URI;
 public class FreePlantClient {
     private final FreePlantConfig freePlantConfig;
     private final RestTemplate restTemplate;
+    private final PlantService plantService;
+    private final PlantMapper plantMapper;
 
     private URI buildUrl(String plantName) {
         return UriComponentsBuilder.fromHttpUrl(freePlantConfig.getFreeplantApiEndpoint() + "/species-list")
@@ -24,12 +26,8 @@ public class FreePlantClient {
                 .build().encode().toUri();
     }
 
-    public void getId(String name) throws JsonProcessingException {
-        String data = restTemplate.getForObject(buildUrl(name), String.class);
-        data = data.substring((data.indexOf("[")+1), (data.lastIndexOf(",\"default")));
-        data += "}";
-        ObjectMapper objectMapper = new ObjectMapper();
-        FreePlantDto plant = objectMapper.readValue(data, FreePlantDto.class);
-        System.out.println(plant.getCommon_name() + " - " + plant.getScientific_name()[0] + " - " + plant.getSunlight()[0] + "/" + plant.getWatering());
+    public void getId(String name) {
+        FreePlantRootDto freePlantRootDto = restTemplate.getForObject(buildUrl(name), FreePlantRootDto.class);
+        plantService.addPlant(plantMapper.mapToPlant(freePlantRootDto));
     }
 }

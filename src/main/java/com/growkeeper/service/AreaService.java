@@ -27,14 +27,14 @@ public class AreaService {
 
     public void updateArea(Integer areaId, Area area)  {
         if(areaRepository.findById(areaId).isPresent()) {
-            Area areaModificated = areaRepository.findById(areaId).get();
-            areaModificated.setAreaMoisture(area.getAreaMoisture());
-            areaModificated.setAreaInsolation(area.getAreaInsolation());
-            areaModificated.setAreaLength(area.getAreaLength());
-            areaModificated.setAreaWidth(area.getAreaWidth());
-            areaModificated.setAreaDepth(area.getAreaDepth());
-            areaModificated.setAreaScientificName(area.getAreaScientificName());
-            areaRepository.save(areaModificated);
+            Area areaModified = areaRepository.findById(areaId).get();
+            areaModified.setAreaMoisture(area.getAreaMoisture());
+            areaModified.setAreaInsolation(area.getAreaInsolation());
+            areaModified.setAreaLength(area.getAreaLength());
+            areaModified.setAreaWidth(area.getAreaWidth());
+            areaModified.setAreaDepth(area.getAreaDepth());
+            areaModified.setAreaScientificName(area.getAreaScientificName());
+            areaRepository.save(areaModified);
         } else {
             throw new AreaNotFoundException();
         }

@@ -34,9 +34,7 @@ public class WeatherService {
 
     public void addWeatherInBulk(List<Weather> weatherList) {
         weatherRepository.deleteAll();
-        for(Weather w : weatherList) {
-            weatherRepository.save(w);
-        }
+        weatherRepository.saveAll(weatherList);
     }
 
     public void deleteWeather(LocalDateTime time)  {

@@ -31,15 +31,15 @@ public class PlantController {
 
     @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createPlant(@RequestBody PlantDto plantDto) {
-        plantService.createPlant(plantMapper.mapToPlant(plantDto));
+        plantService.addPlant(plantMapper.mapToPlant(plantDto));
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(path="/{id}", consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PlantDto> updatePlant(@PathVariable("id") String plantScientificName, @RequestBody PlantDto plantDto) {
-        plantService.updatePlant(plantScientificName, plantMapper.mapToPlant(plantDto));
-        return ResponseEntity.ok(plantMapper.mapToPlantDto(plantService.getPlant(plantDto.getPlantScientificName())));
-    }
+//    @PutMapping(path="/{id}", consumes= MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<PlantDto> updatePlant(@PathVariable("id") String plantScientificName, @RequestBody PlantDto plantDto) {
+//        plantService.updatePlant(plantScientificName, plantMapper.mapToPlant(plantDto));
+//        return ResponseEntity.ok(plantMapper.mapToPlantDto(plantService.getPlant(plantDto.getPlantScientificName())));
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlant(@PathVariable("id") String plantScientificName) throws PlantNotFoundException {

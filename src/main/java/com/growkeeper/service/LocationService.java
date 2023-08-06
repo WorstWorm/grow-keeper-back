@@ -21,7 +21,7 @@ public class LocationService {
         return locationRepository.findById(locationCity).orElseThrow(LocationNotFoundException::new);
     }
 
-    public void createLocation(Location location) {
+    public void addLocation(Location location) {
         locationRepository.deleteAll();
         locationRepository.save(location);
     }

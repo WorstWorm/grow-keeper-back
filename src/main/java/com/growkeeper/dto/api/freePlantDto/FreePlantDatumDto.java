@@ -2,26 +2,30 @@ package com.growkeeper.dto.api.freePlantDto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.util.ArrayList;
+
 @Getter
-@RequiredArgsConstructor
-@AllArgsConstructor
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FreePlantDto {
+public class FreePlantDatumDto {
     @JsonProperty("id")
-    private int id;
+    int id;
 
     @JsonProperty("common_name")
-    private String common_name;
+    String common_name;
 
     @JsonProperty("scientific_name")
-    private String[] scientific_name;
+    ArrayList<String> scientific_name;
+
+    @JsonProperty("cycle")
+    String cycle;
 
     @JsonProperty("watering")
-    private String watering;
+    String watering;
 
     @JsonProperty("sunlight")
-    private String[] sunlight;
+    ArrayList<String> sunlight;
 }

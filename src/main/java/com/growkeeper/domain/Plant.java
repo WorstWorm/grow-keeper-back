@@ -2,10 +2,7 @@ package com.growkeeper.domain;
 
 import com.growkeeper.enums.InsolationOptions;
 import com.growkeeper.enums.WateringOptions;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,8 +24,10 @@ public class Plant {
     private String plantCommonName;
 
     @Column(name = "plant_watering")
+    @Enumerated(value = EnumType.STRING)
     private WateringOptions plantWatering;
 
     @Column(name = "plant_insolation")
+    @Enumerated(value = EnumType.STRING)
     private InsolationOptions plantSunlight;
 }

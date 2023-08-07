@@ -14,10 +14,6 @@ import java.io.IOException;
 public class PlantNetService {
     private final PlantNetClient plantNetClient;
 
-//    public void getName() {
-//        plantNetClient.getName();
-//    }
-
     public void getName(MultipartFile file) {
         File retFile = new File("tempImage");
         try {

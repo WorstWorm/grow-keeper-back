@@ -17,9 +17,9 @@ public class LocationController {
     private final LocationService locationService;
     private final LocationMapper locationMapper;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<LocationDto> getLocation(@PathVariable("id") String city) throws LocationNotFoundException {
-        return ResponseEntity.ok(locationMapper.mapToLocationDto(locationService.getLocation(city)));
+    @GetMapping()
+    public ResponseEntity<LocationDto> getLocation() throws LocationNotFoundException {
+        return ResponseEntity.ok(locationMapper.mapToLocationDto(locationService.getLocation()));
     }
 
     @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)

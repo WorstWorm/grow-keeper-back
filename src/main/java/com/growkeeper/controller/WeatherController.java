@@ -20,25 +20,20 @@ public class WeatherController {
     private final WeatherService weatherService;
     private final WeatherMapper weatherMapper;
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<WeatherDto> getWeather(@PathVariable("id") int id) throws WeatherNotFoundException {
-//        return ResponseEntity.ok(weatherMapper.mapToWeatherDto(weatherService.getWeather(id)));
-//    }
-
     @GetMapping()
     public ResponseEntity<List<WeatherDto>> getWeathers() {
         return ResponseEntity.ok(weatherMapper.mapToWeatherDtoList(weatherService.getWeathers()));
     }
 
-    @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> addWeather(@RequestBody WeatherDto weatherDto) {
-        weatherService.addWeather(weatherMapper.mapToWeather(weatherDto));
-        return ResponseEntity.ok().build();
-    }
+//    @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Void> addWeather(@RequestBody WeatherDto weatherDto) {
+//        weatherService.addWeather(weatherMapper.mapToWeather(weatherDto));
+//        return ResponseEntity.ok().build();
+//    }
 
-    @DeleteMapping("/{time}")
-    public ResponseEntity<Void> deleteWeather(@PathVariable("time") LocalDateTime time) throws WeatherNotFoundException {
-        weatherService.deleteWeather(time);
-        return ResponseEntity.ok().build();
-    }
+//    @DeleteMapping("/{time}")
+//    public ResponseEntity<Void> deleteWeather(@PathVariable("time") LocalDateTime time) throws WeatherNotFoundException {
+//        weatherService.deleteWeather(time);
+//        return ResponseEntity.ok().build();
+//    }
 }

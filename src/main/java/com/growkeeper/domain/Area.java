@@ -21,21 +21,19 @@ public class Area {
     @Column(name = "area_id", unique = true)
     private Integer areaId;
 
-    @Column(name = "area_moisture")
-    private MoistureOptions areaMoisture;
-
     @Column(name = "area_insolation")
     private InsolationOptions areaInsolation;
 
-    @Column(name = "area_length")
-    private Float areaLength;
-
-    @Column(name = "area_width")
-    private Float areaWidth;
-
-    @Column(name = "area_depth")
-    private Float areaDepth;
+    @Column(name = "covered")
+    private Boolean areaCovered;
 
     @Column(name = "plant_scientific_name")
     private String areaScientificName;
+
+    public Area(Integer areaId, InsolationOptions areaInsolation, Boolean areaCovered) {
+        this.areaId = areaId;
+        this.areaInsolation = areaInsolation;
+        this.areaCovered = areaCovered;
+        this.areaScientificName = " ";
+    }
 }

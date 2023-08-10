@@ -12,11 +12,8 @@ public class AreaMapper {
     public Area mapToArea(final AreaDto areaDto) {
         return new Area(
             areaDto.getAreaId(),
-            areaDto.getAreaMoisture(),
             areaDto.getAreaInsolation(),
-            areaDto.getAreaLength(),
-            areaDto.getAreaWidth(),
-            areaDto.getAreaDepth(),
+            areaDto.getAreaCovered(),
             areaDto.getAreaScientificName()
         );
     }
@@ -24,11 +21,8 @@ public class AreaMapper {
     public AreaDto mapToAreaDto(final Area area) {
         return new AreaDto(
             area.getAreaId(),
-            area.getAreaMoisture(),
             area.getAreaInsolation(),
-            area.getAreaLength(),
-            area.getAreaWidth(),
-            area.getAreaDepth(),
+            area.getAreaCovered(),
             area.getAreaScientificName()
         );
     }

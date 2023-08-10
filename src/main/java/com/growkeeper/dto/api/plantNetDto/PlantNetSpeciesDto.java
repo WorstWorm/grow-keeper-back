@@ -11,6 +11,4 @@ import lombok.Setter;
 public class PlantNetSpeciesDto {
     @JsonProperty("scientificNameWithoutAuthor")
     String scientificNameWithoutAuthor;
-//    @JsonProperty("commonNames")
-//    ArrayList<String> commonNames;
 }

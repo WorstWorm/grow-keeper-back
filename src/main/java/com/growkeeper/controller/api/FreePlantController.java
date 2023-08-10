@@ -13,7 +13,7 @@ public class FreePlantController {
     private final FreePlantService freePlantService;
 
     @GetMapping("/{plant}")
-    public void getName(@PathVariable("plant") String plant) throws JsonProcessingException {
+    public void getInfo(@PathVariable("plant") String plant) throws JsonProcessingException {
         freePlantService.getInfo(plant);
     }
 }

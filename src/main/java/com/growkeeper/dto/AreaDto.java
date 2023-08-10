@@ -14,10 +14,14 @@ import lombok.Setter;
 public class AreaDto {
 
     private Integer areaId;
-    private MoistureOptions areaMoisture;
     private InsolationOptions areaInsolation;
-    private Float areaLength;
-    private Float areaWidth;
-    private Float areaDepth;
+    private Boolean areaCovered;
     private String areaScientificName;
+
+    public AreaDto(Integer areaId, InsolationOptions areaInsolation, Boolean areaCovered) {
+        this.areaId = areaId;
+        this.areaInsolation = areaInsolation;
+        this.areaCovered = areaCovered;
+        this.areaScientificName = " ";
+    }
 }

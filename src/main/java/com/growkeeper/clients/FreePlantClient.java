@@ -26,7 +26,7 @@ public class FreePlantClient {
                 .build().encode().toUri();
     }
 
-    public void getId(String name) {
+    public void getPlant(String name) {
         FreePlantRootDto freePlantRootDto = restTemplate.getForObject(buildUrl(name), FreePlantRootDto.class);
         plantService.addPlant(plantMapper.mapToPlant(freePlantRootDto));
     }

@@ -7,16 +7,13 @@ import com.growkeeper.repository.LocationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class LocationService {
     private final LocationRepository locationRepository;
 
     public Location getLocation() {
-        if(locationRepository.findAll().size() == 0){
+        if(locationRepository.findAll().isEmpty()){
             throw new LocationNotFoundException();
         } else if (locationRepository.findAll().size() > 1) {
             throw new MultipleLocationsFoundException();

@@ -1,6 +1,5 @@
 package com.growkeeper.service.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.growkeeper.clients.FreePlantClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class FreePlantService {
     private final FreePlantClient freePlantClient;
-    public void getInfo(String name) throws JsonProcessingException {
-        freePlantClient.getId(name);
+    public void getInfo(String name) {
+        freePlantClient.getPlant(name);
     }
 }

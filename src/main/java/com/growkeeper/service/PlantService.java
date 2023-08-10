@@ -13,8 +13,8 @@ import java.util.List;
 public class PlantService {
     private final PlantRepository plantRepository;
 
-    public Plant getPlant(String plantCity) {
-        return plantRepository.findById(plantCity).orElseThrow(PlantNotFoundException::new);
+    public Plant getPlant(String plant) {
+        return plantRepository.findById(plant).orElseThrow(PlantNotFoundException::new);
     }
 
     public List<Plant> getPlants() {

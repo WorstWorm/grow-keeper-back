@@ -1,7 +1,6 @@
 package com.growkeeper.domain;
 
 import com.growkeeper.enums.InsolationOptions;
-import com.growkeeper.enums.MoistureOptions;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

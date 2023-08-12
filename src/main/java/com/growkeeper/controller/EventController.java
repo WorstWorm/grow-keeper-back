@@ -5,7 +5,6 @@ import com.growkeeper.mapper.EventMapper;
 import com.growkeeper.service.ActionService;
 import com.growkeeper.service.EventService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +18,15 @@ public class EventController {
     private final EventService eventService;
     private final EventMapper eventMapper;
     private final ActionService actionService;
+
     @GetMapping()
     public ResponseEntity<List<EventDto>> getEvents() {
         return ResponseEntity.ok(eventMapper.mapToEventDtoList(eventService.getEvents()));
+    }
+
+    @GetMapping(path="/{id}")
+    public void callActionCheck() {
+        actionService.neededActionCheck();
     }
 
     @PutMapping(path="/{id}")
@@ -29,8 +34,4 @@ public class EventController {
         eventService.updateEvent(id);
     }
 
-    @GetMapping(path="/{id}")
-    public void callActionCheck() {
-        actionService.neededActionCheck();
-    }
 }

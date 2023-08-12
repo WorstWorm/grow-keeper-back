@@ -1,7 +1,6 @@
 package com.growkeeper.dto;
 
 import com.growkeeper.enums.InsolationOptions;
-import com.growkeeper.enums.MoistureOptions;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

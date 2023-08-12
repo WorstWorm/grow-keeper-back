@@ -1,6 +1,5 @@
 package com.growkeeper.dto;
 
-//import com.growkeeper.domain.Event;
 import com.growkeeper.enums.ActionOptions;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

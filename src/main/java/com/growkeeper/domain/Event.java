@@ -65,14 +65,14 @@ public class Event {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", area=" + area +
-                ", actionType=" + actionType +
-                ", completionTime=" + completionTime +
-                ", completed=" + completed +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Event{" +
+//                "id=" + id +
+//                ", area=" + area +
+//                ", actionType=" + actionType +
+//                ", completionTime=" + completionTime +
+//                ", completed=" + completed +
+//                '}';
+//    }
 }

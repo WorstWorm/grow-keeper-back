@@ -19,19 +19,25 @@ public class AreaController {
     private final AreaService areaService;
     private final AreaMapper areaMapper;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AreaDto> getArea(@PathVariable("id") int id) throws AreaNotFoundException {
-        return ResponseEntity.ok(areaMapper.mapToAreaDto(areaService.getArea(id)));
-    }
-
     @GetMapping()
     public ResponseEntity<List<AreaDto>> getAreas() {
         return ResponseEntity.ok(areaMapper.mapToAreaDtoList(areaService.getAreas()));
     }
 
-    @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createArea(@RequestBody AreaDto areaDto) {
-        areaService.createArea(areaMapper.mapToArea(areaDto));
+    @GetMapping("/{id}")
+    public ResponseEntity<AreaDto> getArea(@PathVariable("id") int id) throws AreaNotFoundException {
+        return ResponseEntity.ok(areaMapper.mapToAreaDto(areaService.getArea(id)));
+    }
+
+//    @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Void> createArea(@RequestBody AreaDto areaDto) {
+//        areaService.createArea(areaMapper.mapToArea(areaDto));
+//        return ResponseEntity.ok().build();
+//    }
+
+    @PostMapping()
+    public ResponseEntity<Void> createArea() {
+        areaService.createArea();
         return ResponseEntity.ok().build();
     }
 

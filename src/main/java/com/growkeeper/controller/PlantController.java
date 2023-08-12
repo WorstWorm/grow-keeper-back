@@ -19,15 +19,16 @@ public class PlantController {
     private final PlantService plantService;
     private final PlantMapper plantMapper;
 
+    @GetMapping()
+    public ResponseEntity<List<PlantDto>> getPlants() {
+        return ResponseEntity.ok(plantMapper.mapToPlantDtoList(plantService.getPlants()));
+    }
+
     @GetMapping("/{plant}")
     public ResponseEntity<PlantDto> getPlant(@PathVariable("plant") String plantScientificName) throws PlantNotFoundException {
         return ResponseEntity.ok(plantMapper.mapToPlantDto(plantService.getPlant(plantScientificName)));
     }
 
-    @GetMapping()
-    public ResponseEntity<List<PlantDto>> getPlants() {
-        return ResponseEntity.ok(plantMapper.mapToPlantDtoList(plantService.getPlants()));
-    }
 
     @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createPlant(@RequestBody PlantDto plantDto) {

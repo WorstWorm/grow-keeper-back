@@ -19,15 +19,15 @@ public class FreePlantClient {
     private final PlantService plantService;
     private final PlantMapper plantMapper;
 
-    private URI buildUrl(String plantName) {
+    private URI buildUrlToGetPlane(String plantName) {
         return UriComponentsBuilder.fromHttpUrl(freePlantConfig.getFreeplantApiEndpoint() + "/species-list")
                 .queryParam("key", freePlantConfig.getFreeplantApiKey())
                 .queryParam("q", plantName)
                 .build().encode().toUri();
     }
 
-    public void getPlant(String name) {
-        FreePlantRootDto freePlantRootDto = restTemplate.getForObject(buildUrl(name), FreePlantRootDto.class);
+    public void getPlantInfo(String name) {
+        FreePlantRootDto freePlantRootDto = restTemplate.getForObject(buildUrlToGetPlane(name), FreePlantRootDto.class);
         plantService.addPlant(plantMapper.mapToPlant(freePlantRootDto));
     }
 }

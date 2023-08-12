@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public class FreePlantService {
     private final FreePlantClient freePlantClient;
     public void getInfo(String name) {
-        freePlantClient.getPlant(name);
+        freePlantClient.getPlantInfo(name);
     }
 }

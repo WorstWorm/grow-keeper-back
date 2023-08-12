@@ -28,7 +28,7 @@ public class AreaService {
     private void checkIfPlantExistOrAdd(String plantName) {
         if(!plantName.equals(" ")) {
             if (plantRepository.findById(plantName).isEmpty()) {
-                freePlantClient.getPlant(plantName);
+                freePlantClient.getPlantInfo(plantName);
             }
         }
     }
@@ -38,12 +38,17 @@ public class AreaService {
         areaRepository.save(area);
     }
 
+    public void createArea() {
+        areaRepository.save(new Area());
+    }
+
     public void updateArea(Integer areaId, Area area) {
         checkIfPlantExistOrAdd(area.getAreaScientificName());
         if(areaRepository.findById(areaId).isPresent()) {
             Area areaModified = areaRepository.findById(areaId).get();
             areaModified.setAreaInsolation(area.getAreaInsolation());
             areaModified.setAreaScientificName(area.getAreaScientificName());
+            areaModified.setAreaCovered(area.getAreaCovered());
             areaRepository.save(areaModified);
         } else {
             throw new AreaNotFoundException();

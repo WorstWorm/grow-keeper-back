@@ -29,12 +29,6 @@ public class AreaController {
         return ResponseEntity.ok(areaMapper.mapToAreaDto(areaService.getArea(id)));
     }
 
-//    @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Void> createArea(@RequestBody AreaDto areaDto) {
-//        areaService.createArea(areaMapper.mapToArea(areaDto));
-//        return ResponseEntity.ok().build();
-//    }
-
     @PostMapping()
     public ResponseEntity<Void> createArea() {
         areaService.createArea();

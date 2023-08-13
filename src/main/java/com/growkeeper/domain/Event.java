@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class Event {
     @Id
     @GeneratedValue
-    @Column(name="actionId")
+    @Column(name="action_Id")
     private Integer id;
 
     @Column(name="area")
@@ -64,15 +64,4 @@ public class Event {
         result = 31 * result + completionTime.hashCode();
         return result;
     }
-
-//    @Override
-//    public String toString() {
-//        return "Event{" +
-//                "id=" + id +
-//                ", area=" + area +
-//                ", actionType=" + actionType +
-//                ", completionTime=" + completionTime +
-//                ", completed=" + completed +
-//                '}';
-//    }
 }

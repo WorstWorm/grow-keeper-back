@@ -30,21 +30,21 @@ public class LocationService implements LocationObservable {
     public void addLocation(Location location) {
         locationRepository.deleteAll();
         locationRepository.save(location);
-        notifyObservers(location);
+        notifyLocationObservers(location);
     }
 
     @Override
-    public void addObserver(LocationObserver observer) {
+    public void addLocationObserver(LocationObserver observer) {
         observers.add(observer);
     }
 
     @Override
-    public void removeObserver(LocationObserver observer) {
+    public void removeLocationObserver(LocationObserver observer) {
         observers.remove(observer);
     }
 
     @Override
-    public void notifyObservers(Location newLocation) {
+    public void notifyLocationObservers(Location newLocation) {
         for(LocationObserver observer : observers) {
             observer.locationChanged(newLocation);
         }

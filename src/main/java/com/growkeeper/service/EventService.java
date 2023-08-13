@@ -5,7 +5,6 @@ import com.growkeeper.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,14 +23,8 @@ public class EventService {
     }
 
     public void addEvents(List<Event> newEvents) {
-        List<Event> existingEvents = eventRepository.findAll();
-        List<Event> finalAdd = new ArrayList<>();
-        for(Event ne : newEvents) {
-            if(!existingEvents.contains(ne)){
-                finalAdd.add(ne);
-            }
-        }
-        eventRepository.saveAll(finalAdd);
+        eventRepository.deleteAll();
+        eventRepository.saveAll(newEvents);
     }
 
 }

@@ -22,7 +22,7 @@ public class PlantNetService {
             fos.write(file.getBytes());
             fos.close();
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         plantNetClient.getName(retFile);
         retFile.delete();

@@ -1,6 +1,5 @@
 package com.growkeeper.controller.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.growkeeper.service.api.FreePlantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ public class FreePlantController {
     private final FreePlantService freePlantService;
 
     @GetMapping("/{plant}")
-    public void getInfo(@PathVariable("plant") String plant) throws JsonProcessingException {
+    public void getInfo(@PathVariable("plant") String plant) {
         freePlantService.getInfo(plant);
     }
 }

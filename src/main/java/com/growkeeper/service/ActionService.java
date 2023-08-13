@@ -10,6 +10,8 @@ import com.growkeeper.mapper.AreaMapper;
 import com.growkeeper.mapper.EventMapper;
 import com.growkeeper.mapper.PlantMapper;
 import com.growkeeper.mapper.WeatherMapper;
+import com.growkeeper.observer.AreaObserver;
+import com.growkeeper.observer.WeatherObserver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,23 +24,16 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ActionService {
-    @Autowired
-    AreaService areaService;
-    @Autowired
-    PlantService plantService;
-    @Autowired
-    WeatherService weatherService;
-    @Autowired
-    EventService eventService;
-    @Autowired
-    WeatherMapper weatherMapper;
-    @Autowired
-    AreaMapper areaMapper;
-    @Autowired
-    EventMapper eventMapper;
-    @Autowired
-    PlantMapper plantMapper;
+public class ActionService implements WeatherObserver, AreaObserver {
+    private final AreaService areaService;
+    private final PlantService plantService;
+    private final WeatherService weatherService;
+    private final EventService eventService;
+    private final WeatherMapper weatherMapper;
+    private final AreaMapper areaMapper;
+    private final EventMapper eventMapper;
+    private final PlantMapper plantMapper;
+
     Map<AreaDto, PlantDto> plantsAtAreas = new HashMap<>();
 
     public void neededActionCheck() {
@@ -93,5 +88,15 @@ public class ActionService {
         }
         actionToBeAdded = actionToBeAdded.stream().distinct().collect(Collectors.toList());
         return actionToBeAdded;
+    }
+
+    @Override
+    public void areaChanged() {
+        neededActionCheck();
+    }
+
+    @Override
+    public void weatherChanged() {
+        neededActionCheck();
     }
 }

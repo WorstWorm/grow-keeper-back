@@ -1,10 +1,8 @@
 package com.growkeeper.config;
 
 import com.growkeeper.clients.OpenWeatherClient;
-import com.growkeeper.observer.LocationObservable;
-import com.growkeeper.observer.LocationObserver;
-import com.growkeeper.service.LocationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.growkeeper.observer.*;
+import com.growkeeper.service.ActionService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -17,14 +15,20 @@ public class CoreConfiguration {
     }
 
     @Bean
-    public LocationObserver openWeatherObserver(LocationObservable locationObservable, OpenWeatherClient openWeatherClient) {
-        LocationObserver observer = openWeatherClient;
-        locationObservable.addObserver(observer);
-        return observer;
+    public LocationObserver locationObserver(LocationObservable locationObservable, OpenWeatherClient openWeatherClient) {
+        locationObservable.addLocationObserver(openWeatherClient);
+        return openWeatherClient;
     }
 
-//    @Autowired
-//    public void setupObservers(LocationService locationService, LocationObserver locationObserver) {
-//        locationService.addObserver(locationObserver);
-//    }
+    @Bean
+    WeatherObserver weatherObserver(WeatherObservable weatherObservable, ActionService actionService) {
+        weatherObservable.addWeatherObserver(actionService);
+        return actionService;
+    }
+
+    @Bean
+    AreaObserver areaObserver(AreaObservable areaObservable, ActionService actionService) {
+        areaObservable.addAreaObserver(actionService);
+        return actionService;
+    }
 }

@@ -33,11 +33,6 @@ public class WeatherService implements WeatherObservable {
     }
 
     @Override
-    public void removeWeatherObserver(WeatherObserver observer) {
-        weatherObserverList.remove(observer);
-    }
-
-    @Override
     public void notifyWeatherObservers() {
         for(WeatherObserver observer : weatherObserverList) {
             observer.weatherChanged();

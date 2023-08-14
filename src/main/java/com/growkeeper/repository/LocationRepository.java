@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface LocationRepository extends CrudRepository<Location, String> {
-
     @Override
     List<Location> findAll();
 }

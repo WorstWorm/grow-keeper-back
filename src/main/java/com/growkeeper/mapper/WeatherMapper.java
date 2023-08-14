@@ -3,6 +3,7 @@ package com.growkeeper.mapper;
 import com.growkeeper.domain.Weather;
 import com.growkeeper.dto.WeatherDto;
 import com.growkeeper.dto.api.openWeatherDto.weather.OpenWeatherListDto;
+import com.growkeeper.config.WeatherParametersConfig;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -12,29 +13,22 @@ import java.util.stream.Collectors;
 
 @Service
 public class WeatherMapper {
-    public Weather mapToWeather(final WeatherDto weatherDto) {
-        return new Weather(
-                weatherDto.getWeatherTemperature(),
-                weatherDto.getWeatherType(),
-                weatherDto.getWeatherClouds(),
-                weatherDto.getWeatherWind(),
-                weatherDto.getWeatherRain(),
-                weatherDto.getWeatherTime()
-        );
-    }
+    private static WeatherParametersConfig weatherParametersConfig;
 
     public Weather mapToWeather(final OpenWeatherListDto openWeatherListDto) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        double rain = 0.0;
+        double amountOfRainForDownloadedWeather;
         if(openWeatherListDto.getOpenWeatherRainDto() != null) {
-            rain = openWeatherListDto.getOpenWeatherRainDto().get_3h();
+            amountOfRainForDownloadedWeather = openWeatherListDto.getOpenWeatherRainDto().get_3h();
+        } else {
+            amountOfRainForDownloadedWeather = weatherParametersConfig.getRain_none();
         }
         return new Weather(
                 openWeatherListDto.getOpenWeatherMainDto().getTemp(),
                 openWeatherListDto.getOpenWeatherWeatherDto().get(0).getMain(),
                 openWeatherListDto.getOpenWeatherCloudsDto().getAll(),
                 openWeatherListDto.getOpenWeatherWindDto().getSpeed(),
-                rain,
+                amountOfRainForDownloadedWeather,
                 LocalDateTime.parse(openWeatherListDto.getDt_txt(), dateTimeFormatter)
         );
     }

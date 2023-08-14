@@ -27,10 +27,6 @@ public class AreaMapper {
         );
     }
 
-    public List<Area> mapToAreaList(final List<AreaDto> areaDtoList) {
-        return areaDtoList.stream().map(this::mapToArea).collect(Collectors.toList());
-    }
-
     public List<AreaDto> mapToAreaDtoList(final List<Area> areaList) {
         return areaList.stream().map(this::mapToAreaDto).collect(Collectors.toList());
     }

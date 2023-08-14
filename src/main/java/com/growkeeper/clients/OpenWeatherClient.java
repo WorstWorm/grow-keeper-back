@@ -4,6 +4,8 @@ import com.growkeeper.config.OpenWeatherConfig;
 import com.growkeeper.domain.Location;
 import com.growkeeper.dto.api.openWeatherDto.city.OpenWeatherCityRootDto;
 import com.growkeeper.dto.api.openWeatherDto.weather.OpenWeatherRootDto;
+import com.growkeeper.exception.LocationNotFoundException;
+import com.growkeeper.exception.WeatherNotFoundException;
 import com.growkeeper.mapper.LocationMapper;
 import com.growkeeper.mapper.WeatherMapper;
 import com.growkeeper.observer.LocationObserver;
@@ -45,12 +47,20 @@ public class OpenWeatherClient implements LocationObserver {
 
     public void getLocation(String city) {
         OpenWeatherCityRootDto[] openWeatherCityRootDto = restTemplate.getForObject(buildUrlToGetLocation(city), OpenWeatherCityRootDto[].class);
-        locationService.addLocation(locationMapper.mapToLocation(openWeatherCityRootDto[0]));
+        if(openWeatherCityRootDto != null) {
+            locationService.addLocation(locationMapper.mapToLocation(openWeatherCityRootDto[0]));
+        } else {
+            throw new LocationNotFoundException();
+        }
     }
 
     public void getWeather(double lat, double lon) {
         OpenWeatherRootDto openWeatherRootDto = restTemplate.getForObject(buildUrlToGetWeather(lat, lon), OpenWeatherRootDto.class);
-        weatherService.addWeatherInBulk(weatherMapper.mapToWeatherList(openWeatherRootDto.getOpenWeatherListDtos()));
+        if(openWeatherRootDto != null) {
+            weatherService.addWeatherInBulk(weatherMapper.mapToWeatherList(openWeatherRootDto.getOpenWeatherListDtos()));
+        } else {
+            throw new WeatherNotFoundException();
+        }
     }
 
     @Override

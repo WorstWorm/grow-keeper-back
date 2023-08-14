@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @Setter
 @Table(name = "event")
 public class Event {
+
     @Id
     @GeneratedValue
     @Column(name="action_Id")

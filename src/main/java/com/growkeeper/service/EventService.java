@@ -1,6 +1,7 @@
 package com.growkeeper.service;
 
 import com.growkeeper.domain.Event;
+import com.growkeeper.exception.EventNotFoundException;
 import com.growkeeper.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class EventService {
     }
 
     public void updateEvent(int id) {
-        Event event = eventRepository.findById(id).get();
+        Event event = eventRepository.findById(id).orElseThrow(EventNotFoundException::new);
         event.switchCompleted();
         eventRepository.save(event);
     }

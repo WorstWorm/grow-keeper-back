@@ -12,14 +12,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class PlantMapper {
-    public Plant mapToPlant(final PlantDto plantDto) {
-        return new Plant(
-            plantDto.getPlantScientificName(),
-            plantDto.getPlantCommonName(),
-            plantDto.getPlantWatering(),
-            plantDto.getPlantSunlight()
-        );
-    }
 
     public Plant mapToPlant(final FreePlantRootDto freePlantRootDto) {
         return new Plant(
@@ -37,10 +29,6 @@ public class PlantMapper {
                 plant.getPlantWatering(),
                 plant.getPlantSunlight()
         );
-    }
-
-    public List<Plant> mapToPlantList(final List<PlantDto> plantDtoList) {
-        return plantDtoList.stream().map(this::mapToPlant).collect(Collectors.toList());
     }
 
     public List<PlantDto> mapToPlantDtoList(final List<Plant> plantList) {

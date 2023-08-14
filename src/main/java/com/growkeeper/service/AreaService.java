@@ -20,7 +20,7 @@ public class AreaService implements AreaObservable {
     private final PlantRepository plantRepository;
     private final FreePlantClient freePlantClient;
 
-    private List<AreaObserver> areaObserverList = new ArrayList<>();
+    private final List<AreaObserver> areaObserverList = new ArrayList<>();
 
     public Area getArea(Integer areaId) {
         return areaRepository.findById(areaId).orElseThrow(AreaNotFoundException::new);
@@ -68,11 +68,6 @@ public class AreaService implements AreaObservable {
     @Override
     public void addAreaObserver(AreaObserver observer) {
         areaObserverList.add(observer);
-    }
-
-    @Override
-    public void removeAreaObserver(AreaObserver observer) {
-        areaObserverList.remove(observer);
     }
 
     @Override

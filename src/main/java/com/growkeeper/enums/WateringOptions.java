@@ -1,5 +1,8 @@
 package com.growkeeper.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum WateringOptions {
     FREQUENT("frequent"),
     AVERAGE("average"),
@@ -12,7 +15,4 @@ public enum WateringOptions {
         this.option = option;
     }
 
-    public String getOption() {
-        return option;
-    }
 }

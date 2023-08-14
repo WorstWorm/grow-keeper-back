@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 public class WeatherDto {
+
     private Double weatherTemperature;
     private String weatherType;
     private Integer weatherClouds;

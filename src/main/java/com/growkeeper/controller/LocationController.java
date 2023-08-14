@@ -18,12 +18,12 @@ public class LocationController {
     private final LocationMapper locationMapper;
 
     @GetMapping()
-    public ResponseEntity<LocationDto> getLocation() throws LocationNotFoundException {
+    public ResponseEntity<LocationDto> getCurrentLocation() throws LocationNotFoundException {
         return ResponseEntity.ok(locationMapper.mapToLocationDto(locationService.getLocation()));
     }
 
     @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createLocation(@RequestBody LocationDto locationDto) {
+    public ResponseEntity<Void> addNewLocation(@RequestBody LocationDto locationDto) {
         locationService.addLocation(locationMapper.mapToLocation(locationDto));
         return ResponseEntity.ok().build();
     }

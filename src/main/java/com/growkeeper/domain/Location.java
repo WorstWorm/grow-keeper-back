@@ -16,7 +16,6 @@ import lombok.Setter;
 @Setter
 @Table(name = "location")
 public class Location {
-
     @Id
     @Column(name = "city", unique = true)
     private String locationCity;

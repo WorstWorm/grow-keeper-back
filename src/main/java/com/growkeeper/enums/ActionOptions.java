@@ -1,6 +1,9 @@
 package com.growkeeper.enums;
 
 
+import lombok.Getter;
+
+@Getter
 public enum ActionOptions {
 
     WATER("water the plants"),
@@ -15,7 +18,4 @@ public enum ActionOptions {
         this.option = option;
     }
 
-    public String getOption() {
-        return option;
-    }
 }

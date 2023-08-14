@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 public class EventDto {
+
     private Integer id;
     private Integer area;
     private ActionOptions actionType;

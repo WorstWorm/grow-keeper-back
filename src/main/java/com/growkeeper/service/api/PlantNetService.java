@@ -2,6 +2,7 @@ package com.growkeeper.service.api;
 
 import com.growkeeper.clients.PlantNetClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,19 +13,47 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class PlantNetService {
+    @Autowired
     private final PlantNetClient plantNetClient;
 
-    public void getName(MultipartFile file) {
-        File retFile = new File("tempImage");
+//    public String getPlantName(MultipartFile plantImage) {
+//        File temporaryImage = new File("temporaryImage");
+//        try {
+//            temporaryImage.createNewFile();
+//            FileOutputStream fos = new FileOutputStream(temporaryImage);
+//            fos.write(plantImage.getBytes());
+//            fos.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        String plantName = plantNetClient.getPlantScientificName(temporaryImage);
+//        temporaryImage.delete();
+//        return plantName;
+//    }
+
+    private File prepareFile(MultipartFile plantImage) {
+        File temporaryFile = new File("temporaryFile");
         try {
-            retFile.createNewFile();
-            FileOutputStream fos = new FileOutputStream(retFile);
-            fos.write(file.getBytes());
+            temporaryFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(temporaryFile);
+            fos.write(plantImage.getBytes());
             fos.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to create temporary image", e);
         }
-        plantNetClient.getName(retFile);
-        retFile.delete();
+        return temporaryFile;
+    }
+
+    public String getPlantName(MultipartFile plantImage) {
+        File temporaryFile = prepareFile(plantImage);
+        String plantName = plantNetClient.getPlantScientificName(temporaryFile);
+        deleteTemporaryFile(temporaryFile);
+        return plantName;
+    }
+
+    private void deleteTemporaryFile(File temporaryFile) {
+        if(!temporaryFile.delete()) {
+            throw new RuntimeException("Failed to delete temporary file");
+        }
     }
 }

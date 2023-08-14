@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class WeatherScheduler {
-
     private final OpenWeatherClient openWeatherClient;
     private final LocationService locationService;
 

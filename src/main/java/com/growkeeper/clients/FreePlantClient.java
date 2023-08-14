@@ -2,6 +2,7 @@ package com.growkeeper.clients;
 
 import com.growkeeper.config.FreePlantConfig;
 import com.growkeeper.dto.api.freePlantDto.FreePlantRootDto;
+import com.growkeeper.exception.PlantNotFoundException;
 import com.growkeeper.service.PlantService;
 import com.growkeeper.mapper.PlantMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +27,12 @@ public class FreePlantClient {
                 .build().encode().toUri();
     }
 
-    public void getPlantInfo(String name) {
-        FreePlantRootDto freePlantRootDto = restTemplate.getForObject(buildUrlToGetPlane(name), FreePlantRootDto.class);
-        plantService.addPlant(plantMapper.mapToPlant(freePlantRootDto));
+    public void getPlantInfo(String plantName) {
+        FreePlantRootDto freePlantRootDto = restTemplate.getForObject(buildUrlToGetPlane(plantName), FreePlantRootDto.class);
+        if(freePlantRootDto != null) {
+            plantService.addPlant(plantMapper.mapToPlant(freePlantRootDto));
+        } else {
+            throw new PlantNotFoundException();
+        }
     }
 }

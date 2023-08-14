@@ -16,7 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LocationService implements LocationObservable {
     private final LocationRepository locationRepository;
-    private List<LocationObserver> observers = new ArrayList<>();
+    private final List<LocationObserver> observers = new ArrayList<>();
+
     public Location getLocation() {
         if(locationRepository.findAll().isEmpty()){
             throw new LocationNotFoundException();
@@ -36,11 +37,6 @@ public class LocationService implements LocationObservable {
     @Override
     public void addLocationObserver(LocationObserver observer) {
         observers.add(observer);
-    }
-
-    @Override
-    public void removeLocationObserver(LocationObserver observer) {
-        observers.remove(observer);
     }
 
     @Override

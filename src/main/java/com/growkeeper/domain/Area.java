@@ -28,11 +28,4 @@ public class Area {
 
     @Column(name = "plant_scientific_name")
     private String areaScientificName;
-
-//    public Area(Integer areaId, InsolationOptions areaInsolation, Boolean areaCovered) {
-//        this.areaId = areaId;
-//        this.areaInsolation = areaInsolation;
-//        this.areaCovered = areaCovered;
-//        this.areaScientificName = " ";
-//    }
 }

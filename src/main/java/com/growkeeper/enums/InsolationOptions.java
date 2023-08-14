@@ -1,5 +1,8 @@
 package com.growkeeper.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum InsolationOptions {
     FULL_SHADE("full shade"),
     PART_SHADE("part shade"),
@@ -14,7 +17,4 @@ public enum InsolationOptions {
         this.option = option;
     }
 
-    public String getOption() {
-        return option;
-    }
 }

@@ -24,26 +24,26 @@ public class AreaController {
         return ResponseEntity.ok(areaMapper.mapToAreaDtoList(areaService.getAreas()));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AreaDto> getArea(@PathVariable("id") int id) throws AreaNotFoundException {
-        return ResponseEntity.ok(areaMapper.mapToAreaDto(areaService.getArea(id)));
+    @GetMapping("/{areaId}")
+    public ResponseEntity<AreaDto> getArea(@PathVariable("areaId") int areaId) throws AreaNotFoundException {
+        return ResponseEntity.ok(areaMapper.mapToAreaDto(areaService.getArea(areaId)));
     }
 
     @PostMapping()
-    public ResponseEntity<Void> createArea() {
+    public ResponseEntity<Void> createEmptyArea() {
         areaService.createArea();
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(path="/{id}", consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AreaDto> updateArea(@PathVariable("id") int id, @RequestBody AreaDto areaDto) {
-        areaService.updateArea(id, areaMapper.mapToArea(areaDto));
+    @PutMapping(path="/{areaId}", consumes= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AreaDto> updateArea(@PathVariable("areaId") int areaId, @RequestBody AreaDto areaDto) {
+        areaService.updateArea(areaId, areaMapper.mapToArea(areaDto));
         return ResponseEntity.ok(areaMapper.mapToAreaDto(areaService.getArea(areaDto.getAreaId())));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteArea(@PathVariable("id") int id) throws AreaNotFoundException {
-        areaService.deleteArea(id);
+    @DeleteMapping("/{areaId}")
+    public ResponseEntity<Void> deleteArea(@PathVariable("areaId") int areaId) throws AreaNotFoundException {
+        areaService.deleteArea(areaId);
         return ResponseEntity.ok().build();
     }
 }

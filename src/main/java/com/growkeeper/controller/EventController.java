@@ -22,9 +22,9 @@ public class EventController {
         return ResponseEntity.ok(eventMapper.mapToEventDtoList(eventService.getEvents()));
     }
 
-    @PutMapping(path="/{id}")
-    public void switchCompleted(@PathVariable("id") int id) {
-        eventService.updateEvent(id);
+    @PutMapping(path="/{eventId}")
+    public void switchCompleted(@PathVariable("eventId") int eventId) {
+        eventService.updateEvent(eventId);
     }
 
 }

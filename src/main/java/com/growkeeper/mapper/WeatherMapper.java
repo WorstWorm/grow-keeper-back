@@ -1,9 +1,9 @@
 package com.growkeeper.mapper;
 
+import com.growkeeper.config.WeatherParametersConfig;
 import com.growkeeper.domain.Weather;
 import com.growkeeper.dto.WeatherDto;
 import com.growkeeper.dto.api.openWeatherDto.weather.OpenWeatherListDto;
-import com.growkeeper.config.WeatherParametersConfig;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

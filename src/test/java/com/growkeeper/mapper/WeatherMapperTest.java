@@ -3,17 +3,18 @@ package com.growkeeper.mapper;
 import com.growkeeper.domain.Weather;
 import com.growkeeper.dto.WeatherDto;
 import com.growkeeper.dto.api.openWeatherDto.weather.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class WeatherMapperTest {
 
     @Test
-    void mapToWeather() {
+    void mapToWeatherTest() {
         //GIVEN
         WeatherMapper weatherMapper = new WeatherMapper();
 
@@ -43,16 +44,16 @@ class WeatherMapperTest {
         Weather expectedWeather = new Weather(20.0, "Rain", 60, 10.0, 15.0, LocalDateTime.of(2023,8,14,21,0,0));
 
         //THEN
-        Assertions.assertEquals(expectedWeather.getWeatherTemperature(), receivedWeather.getWeatherTemperature());
-        Assertions.assertEquals(expectedWeather.getWeatherType(), receivedWeather.getWeatherType());
-        Assertions.assertEquals(expectedWeather.getWeatherClouds(), receivedWeather.getWeatherClouds());
-        Assertions.assertEquals(expectedWeather.getWeatherWind(), receivedWeather.getWeatherWind());
-        Assertions.assertEquals(expectedWeather.getWeatherRain(), receivedWeather.getWeatherRain());
-        Assertions.assertEquals(expectedWeather.getWeatherTime(), receivedWeather.getWeatherTime());
+        assertEquals(expectedWeather.getWeatherTemperature(), receivedWeather.getWeatherTemperature());
+        assertEquals(expectedWeather.getWeatherType(), receivedWeather.getWeatherType());
+        assertEquals(expectedWeather.getWeatherClouds(), receivedWeather.getWeatherClouds());
+        assertEquals(expectedWeather.getWeatherWind(), receivedWeather.getWeatherWind());
+        assertEquals(expectedWeather.getWeatherRain(), receivedWeather.getWeatherRain());
+        assertEquals(expectedWeather.getWeatherTime(), receivedWeather.getWeatherTime());
     }
 
     @Test
-    void mapToWeatherDto() {
+    void mapToWeatherDtoTest() {
         //GIVEN
         WeatherMapper weatherMapper = new WeatherMapper();
 
@@ -64,16 +65,16 @@ class WeatherMapperTest {
         WeatherDto expectedWeather = new WeatherDto(20.0, "Rain", 60, 10.0, 15.0, LocalDateTime.of(2023,8,14,21,0,0));
 
         //THEN
-        Assertions.assertEquals(expectedWeather.getWeatherTemperature(), receivedWeather.getWeatherTemperature());
-        Assertions.assertEquals(expectedWeather.getWeatherType(), receivedWeather.getWeatherType());
-        Assertions.assertEquals(expectedWeather.getWeatherClouds(), receivedWeather.getWeatherClouds());
-        Assertions.assertEquals(expectedWeather.getWeatherWind(), receivedWeather.getWeatherWind());
-        Assertions.assertEquals(expectedWeather.getWeatherRain(), receivedWeather.getWeatherRain());
-        Assertions.assertEquals(expectedWeather.getWeatherTime(), receivedWeather.getWeatherTime());
+        assertEquals(expectedWeather.getWeatherTemperature(), receivedWeather.getWeatherTemperature());
+        assertEquals(expectedWeather.getWeatherType(), receivedWeather.getWeatherType());
+        assertEquals(expectedWeather.getWeatherClouds(), receivedWeather.getWeatherClouds());
+        assertEquals(expectedWeather.getWeatherWind(), receivedWeather.getWeatherWind());
+        assertEquals(expectedWeather.getWeatherRain(), receivedWeather.getWeatherRain());
+        assertEquals(expectedWeather.getWeatherTime(), receivedWeather.getWeatherTime());
     }
 
     @Test
-    void mapToWeatherList() {
+    void mapToWeatherListTest() {
         //GIVEN
         WeatherMapper weatherMapper = new WeatherMapper();
 
@@ -133,18 +134,18 @@ class WeatherMapperTest {
 
         //THEN
         for(int i=0; i<receivedWeatherList.size(); i++) {
-            Assertions.assertEquals(expectedWeatherList.get(i).getWeatherTemperature(), receivedWeatherList.get(i).getWeatherTemperature());
-            Assertions.assertEquals(expectedWeatherList.get(i).getWeatherType(), receivedWeatherList.get(i).getWeatherType());
-            Assertions.assertEquals(expectedWeatherList.get(i).getWeatherClouds(), receivedWeatherList.get(i).getWeatherClouds());
-            Assertions.assertEquals(expectedWeatherList.get(i).getWeatherWind(), receivedWeatherList.get(i).getWeatherWind());
-            Assertions.assertEquals(expectedWeatherList.get(i).getWeatherRain(), receivedWeatherList.get(i).getWeatherRain());
-            Assertions.assertEquals(expectedWeatherList.get(i).getWeatherTime(), receivedWeatherList.get(i).getWeatherTime());
+            assertEquals(expectedWeatherList.get(i).getWeatherTemperature(), receivedWeatherList.get(i).getWeatherTemperature());
+            assertEquals(expectedWeatherList.get(i).getWeatherType(), receivedWeatherList.get(i).getWeatherType());
+            assertEquals(expectedWeatherList.get(i).getWeatherClouds(), receivedWeatherList.get(i).getWeatherClouds());
+            assertEquals(expectedWeatherList.get(i).getWeatherWind(), receivedWeatherList.get(i).getWeatherWind());
+            assertEquals(expectedWeatherList.get(i).getWeatherRain(), receivedWeatherList.get(i).getWeatherRain());
+            assertEquals(expectedWeatherList.get(i).getWeatherTime(), receivedWeatherList.get(i).getWeatherTime());
         }
 
     }
 
     @Test
-    void mapToWeatherDtoList() {
+    void mapToWeatherDtoListTest() {
         //GIVEN
         WeatherMapper weatherMapper = new WeatherMapper();
 
@@ -166,12 +167,12 @@ class WeatherMapperTest {
 
         //THEN
         for(int i=0; i<receivedWeatherDtoList.size(); i++) {
-            Assertions.assertEquals(expectedWeatherDtoList.get(i).getWeatherTemperature(), receivedWeatherDtoList.get(i).getWeatherTemperature());
-            Assertions.assertEquals(expectedWeatherDtoList.get(i).getWeatherType(), receivedWeatherDtoList.get(i).getWeatherType());
-            Assertions.assertEquals(expectedWeatherDtoList.get(i).getWeatherClouds(), receivedWeatherDtoList.get(i).getWeatherClouds());
-            Assertions.assertEquals(expectedWeatherDtoList.get(i).getWeatherWind(), receivedWeatherDtoList.get(i).getWeatherWind());
-            Assertions.assertEquals(expectedWeatherDtoList.get(i).getWeatherRain(), receivedWeatherDtoList.get(i).getWeatherRain());
-            Assertions.assertEquals(expectedWeatherDtoList.get(i).getWeatherTime(), receivedWeatherDtoList.get(i).getWeatherTime());
+            assertEquals(expectedWeatherDtoList.get(i).getWeatherTemperature(), receivedWeatherDtoList.get(i).getWeatherTemperature());
+            assertEquals(expectedWeatherDtoList.get(i).getWeatherType(), receivedWeatherDtoList.get(i).getWeatherType());
+            assertEquals(expectedWeatherDtoList.get(i).getWeatherClouds(), receivedWeatherDtoList.get(i).getWeatherClouds());
+            assertEquals(expectedWeatherDtoList.get(i).getWeatherWind(), receivedWeatherDtoList.get(i).getWeatherWind());
+            assertEquals(expectedWeatherDtoList.get(i).getWeatherRain(), receivedWeatherDtoList.get(i).getWeatherRain());
+            assertEquals(expectedWeatherDtoList.get(i).getWeatherTime(), receivedWeatherDtoList.get(i).getWeatherTime());
         }
     }
 }

@@ -6,18 +6,17 @@ import com.growkeeper.dto.api.freePlantDto.FreePlantDatumDto;
 import com.growkeeper.dto.api.freePlantDto.FreePlantRootDto;
 import com.growkeeper.enums.InsolationOptions;
 import com.growkeeper.enums.WateringOptions;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlantMapperTest {
 
     @Test
-    void mapToPlant() {
+    void mapToPlantTest() {
         //GIVEN
         PlantMapper plantMapper = new PlantMapper();
 
@@ -42,15 +41,15 @@ class PlantMapperTest {
         Plant expectedPlant = new Plant("Plant scientific name", "Plant common name", WateringOptions.FREQUENT, InsolationOptions.FULL_SUN);
 
         //THEN
-        Assertions.assertEquals(expectedPlant.getPlantScientificName(), receivedPlant.getPlantScientificName());
-        Assertions.assertEquals(expectedPlant.getPlantCommonName(), receivedPlant.getPlantCommonName());
-        Assertions.assertEquals(expectedPlant.getPlantSunlight(), receivedPlant.getPlantSunlight());
-        Assertions.assertEquals(expectedPlant.getPlantWatering(), receivedPlant.getPlantWatering());
+        assertEquals(expectedPlant.getPlantScientificName(), receivedPlant.getPlantScientificName());
+        assertEquals(expectedPlant.getPlantCommonName(), receivedPlant.getPlantCommonName());
+        assertEquals(expectedPlant.getPlantSunlight(), receivedPlant.getPlantSunlight());
+        assertEquals(expectedPlant.getPlantWatering(), receivedPlant.getPlantWatering());
 
     }
 
     @Test
-    void mapToPlantDto() {
+    void mapToPlantDtoTest() {
         //GIVEN
         PlantMapper plantMapper = new PlantMapper();
 
@@ -62,14 +61,14 @@ class PlantMapperTest {
         PlantDto expectedPlantDto = new PlantDto("Plant scientific name", "Plant common name", WateringOptions.FREQUENT, InsolationOptions.FULL_SUN);
 
         //THEN
-        Assertions.assertEquals(expectedPlantDto.getPlantScientificName(), receivedPlantDto.getPlantScientificName());
-        Assertions.assertEquals(expectedPlantDto.getPlantCommonName(), receivedPlantDto.getPlantCommonName());
-        Assertions.assertEquals(expectedPlantDto.getPlantSunlight(), receivedPlantDto.getPlantSunlight());
-        Assertions.assertEquals(expectedPlantDto.getPlantWatering(), receivedPlantDto.getPlantWatering());
+        assertEquals(expectedPlantDto.getPlantScientificName(), receivedPlantDto.getPlantScientificName());
+        assertEquals(expectedPlantDto.getPlantCommonName(), receivedPlantDto.getPlantCommonName());
+        assertEquals(expectedPlantDto.getPlantSunlight(), receivedPlantDto.getPlantSunlight());
+        assertEquals(expectedPlantDto.getPlantWatering(), receivedPlantDto.getPlantWatering());
     }
 
     @Test
-    void mapToPlantDtoList() {
+    void mapToPlantDtoListTest() {
         //GIVEN
         PlantMapper plantMapper = new PlantMapper();
 
@@ -90,10 +89,10 @@ class PlantMapperTest {
 
         //THEN
         for(int i=0; i<expectedPlantDtos.size(); i++) {
-            Assertions.assertEquals(expectedPlantDtos.get(i).getPlantScientificName(), receivedPlantDtos.get(i).getPlantScientificName());
-            Assertions.assertEquals(expectedPlantDtos.get(i).getPlantCommonName(), receivedPlantDtos.get(i).getPlantCommonName());
-            Assertions.assertEquals(expectedPlantDtos.get(i).getPlantSunlight(), receivedPlantDtos.get(i).getPlantSunlight());
-            Assertions.assertEquals(expectedPlantDtos.get(i).getPlantWatering(), receivedPlantDtos.get(i).getPlantWatering());
+            assertEquals(expectedPlantDtos.get(i).getPlantScientificName(), receivedPlantDtos.get(i).getPlantScientificName());
+            assertEquals(expectedPlantDtos.get(i).getPlantCommonName(), receivedPlantDtos.get(i).getPlantCommonName());
+            assertEquals(expectedPlantDtos.get(i).getPlantSunlight(), receivedPlantDtos.get(i).getPlantSunlight());
+            assertEquals(expectedPlantDtos.get(i).getPlantWatering(), receivedPlantDtos.get(i).getPlantWatering());
         }
     }
 }

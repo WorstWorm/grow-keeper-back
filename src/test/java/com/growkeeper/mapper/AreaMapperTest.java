@@ -3,11 +3,12 @@ package com.growkeeper.mapper;
 import com.growkeeper.domain.Area;
 import com.growkeeper.dto.AreaDto;
 import com.growkeeper.enums.InsolationOptions;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AreaMapperTest {
 
@@ -32,52 +33,52 @@ public class AreaMapperTest {
     }
 
     @Test
-    void mapToArea_valid() {
-        //Given
+    void mapToAreaTest() {
+        //GIVEN
         AreaMapper areaMapper = new AreaMapper();
 
-        //When
+        //WHEN
         Area givenArea = generateAreaList().get(0);
         AreaDto receivedAreaDto = areaMapper.mapToAreaDto(givenArea);
 
-        //Then
-        Assertions.assertEquals(generateAreaDtoList().get(0).getAreaId(), receivedAreaDto.getAreaId());
-        Assertions.assertEquals(generateAreaDtoList().get(0).getAreaScientificName(), receivedAreaDto.getAreaScientificName());
-        Assertions.assertEquals(generateAreaDtoList().get(0).getAreaInsolation(), receivedAreaDto.getAreaInsolation());
-        Assertions.assertEquals(generateAreaDtoList().get(0).getAreaCovered(), receivedAreaDto.getAreaCovered());
+        //THEN
+        assertEquals(generateAreaDtoList().get(0).getAreaId(), receivedAreaDto.getAreaId());
+        assertEquals(generateAreaDtoList().get(0).getAreaScientificName(), receivedAreaDto.getAreaScientificName());
+        assertEquals(generateAreaDtoList().get(0).getAreaInsolation(), receivedAreaDto.getAreaInsolation());
+        assertEquals(generateAreaDtoList().get(0).getAreaCovered(), receivedAreaDto.getAreaCovered());
     }
 
     @Test
-    void mapToAreaDto_valid() {
-        //Given
+    void mapToAreaDtoTest() {
+        //GIVEN
         AreaMapper areaMapper = new AreaMapper();
 
-        //When
+        //WHEN
         AreaDto givenAreaDto = generateAreaDtoList().get(0);
         Area receivedArea = areaMapper.mapToArea(givenAreaDto);
 
-        //Then
-        Assertions.assertEquals(generateAreaList().get(0).getAreaId(), receivedArea.getAreaId());
-        Assertions.assertEquals(generateAreaList().get(0).getAreaScientificName(), receivedArea.getAreaScientificName());
-        Assertions.assertEquals(generateAreaList().get(0).getAreaInsolation(), receivedArea.getAreaInsolation());
-        Assertions.assertEquals(generateAreaList().get(0).getAreaCovered(), receivedArea.getAreaCovered());
+        //THEN
+        assertEquals(generateAreaList().get(0).getAreaId(), receivedArea.getAreaId());
+        assertEquals(generateAreaList().get(0).getAreaScientificName(), receivedArea.getAreaScientificName());
+        assertEquals(generateAreaList().get(0).getAreaInsolation(), receivedArea.getAreaInsolation());
+        assertEquals(generateAreaList().get(0).getAreaCovered(), receivedArea.getAreaCovered());
     }
 
     @Test
-    void mapToAreaDtoList_valid() {
-        //Given
+    void mapToAreaDtoListTest() {
+        //GIVEN
         AreaMapper areaMapper = new AreaMapper();
 
-        //When
+        //WHEN
         List<Area> givenAreas = generateAreaList();
         List<AreaDto> receivedAreaDtos = areaMapper.mapToAreaDtoList(givenAreas);
 
-        //Then
+        //THEN
         for(int i=0; i<receivedAreaDtos.size(); i++) {
-            Assertions.assertEquals(generateAreaDtoList().get(i).getAreaId(), receivedAreaDtos.get(i).getAreaId());
-            Assertions.assertEquals(generateAreaDtoList().get(i).getAreaScientificName(), receivedAreaDtos.get(i).getAreaScientificName());
-            Assertions.assertEquals(generateAreaDtoList().get(i).getAreaInsolation(), receivedAreaDtos.get(i).getAreaInsolation());
-            Assertions.assertEquals(generateAreaDtoList().get(i).getAreaCovered(), receivedAreaDtos.get(i).getAreaCovered());
+            assertEquals(generateAreaDtoList().get(i).getAreaId(), receivedAreaDtos.get(i).getAreaId());
+            assertEquals(generateAreaDtoList().get(i).getAreaScientificName(), receivedAreaDtos.get(i).getAreaScientificName());
+            assertEquals(generateAreaDtoList().get(i).getAreaInsolation(), receivedAreaDtos.get(i).getAreaInsolation());
+            assertEquals(generateAreaDtoList().get(i).getAreaCovered(), receivedAreaDtos.get(i).getAreaCovered());
         }
     }
 }

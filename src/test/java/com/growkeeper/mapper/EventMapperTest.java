@@ -3,17 +3,18 @@ package com.growkeeper.mapper;
 import com.growkeeper.domain.Event;
 import com.growkeeper.dto.EventDto;
 import com.growkeeper.enums.ActionOptions;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class EventMapperTest {
 
     @Test
-    void mapToEvent() {
+    void mapToEventTest() {
         //GIVEN
         EventMapper eventMapper = new EventMapper();
 
@@ -25,15 +26,15 @@ class EventMapperTest {
         Event expectedEvent = new Event(1, ActionOptions.WATER, LocalDate.of(2020, 1, 5), false);
 
         //THEN
-        Assertions.assertEquals(expectedEvent.getId(), receivedEvent.getId());
-        Assertions.assertEquals(expectedEvent.getArea(), receivedEvent.getArea());
-        Assertions.assertEquals(expectedEvent.getActionType(), receivedEvent.getActionType());
-        Assertions.assertEquals(expectedEvent.getCompletionTime(), receivedEvent.getCompletionTime());
-        Assertions.assertEquals(expectedEvent.isCompleted(), receivedEvent.isCompleted());
+        assertEquals(expectedEvent.getId(), receivedEvent.getId());
+        assertEquals(expectedEvent.getArea(), receivedEvent.getArea());
+        assertEquals(expectedEvent.getActionType(), receivedEvent.getActionType());
+        assertEquals(expectedEvent.getCompletionTime(), receivedEvent.getCompletionTime());
+        assertEquals(expectedEvent.isCompleted(), receivedEvent.isCompleted());
     }
 
     @Test
-    void mapToEventDto() {
+    void mapToEventDtoTest() {
         //GIVEN
         EventMapper eventMapper = new EventMapper();
 
@@ -45,15 +46,15 @@ class EventMapperTest {
         EventDto expectedEventDto = new EventDto(1, 1, ActionOptions.WATER, LocalDate.of(2020, 1, 5), true);
 
         //THEN
-        Assertions.assertEquals(expectedEventDto.getId(), receivedEventDto.getId());
-        Assertions.assertEquals(expectedEventDto.getArea(), receivedEventDto.getArea());
-        Assertions.assertEquals(expectedEventDto.getActionType(), receivedEventDto.getActionType());
-        Assertions.assertEquals(expectedEventDto.getCompletionTime(), receivedEventDto.getCompletionTime());
-        Assertions.assertEquals(expectedEventDto.isCompleted(), receivedEventDto.isCompleted());
+        assertEquals(expectedEventDto.getId(), receivedEventDto.getId());
+        assertEquals(expectedEventDto.getArea(), receivedEventDto.getArea());
+        assertEquals(expectedEventDto.getActionType(), receivedEventDto.getActionType());
+        assertEquals(expectedEventDto.getCompletionTime(), receivedEventDto.getCompletionTime());
+        assertEquals(expectedEventDto.isCompleted(), receivedEventDto.isCompleted());
     }
 
     @Test
-    void mapToEventList() {
+    void mapToEventListTest() {
         //GIVEN
         EventMapper eventMapper = new EventMapper();
 
@@ -74,16 +75,16 @@ class EventMapperTest {
 
         //THEN
         for(int i=0; i<expectedEvents.size(); i++) {
-            Assertions.assertEquals(expectedEvents.get(i).getId(), receivedEvents.get(i).getId());
-            Assertions.assertEquals(expectedEvents.get(i).getArea(), receivedEvents.get(i).getArea());
-            Assertions.assertEquals(expectedEvents.get(i).getActionType(), receivedEvents.get(i).getActionType());
-            Assertions.assertEquals(expectedEvents.get(i).getCompletionTime(), receivedEvents.get(i).getCompletionTime());
-            Assertions.assertEquals(expectedEvents.get(i).isCompleted(), receivedEvents.get(i).isCompleted());
+            assertEquals(expectedEvents.get(i).getId(), receivedEvents.get(i).getId());
+            assertEquals(expectedEvents.get(i).getArea(), receivedEvents.get(i).getArea());
+            assertEquals(expectedEvents.get(i).getActionType(), receivedEvents.get(i).getActionType());
+            assertEquals(expectedEvents.get(i).getCompletionTime(), receivedEvents.get(i).getCompletionTime());
+            assertEquals(expectedEvents.get(i).isCompleted(), receivedEvents.get(i).isCompleted());
         }
     }
 
     @Test
-    void mapToEventDtoList() {
+    void mapToEventDtoListTest() {
         //GIVEN
         EventMapper eventMapper = new EventMapper();
 
@@ -104,11 +105,11 @@ class EventMapperTest {
 
         //THEN
         for(int i=0; i<expectedEventDtos.size(); i++) {
-            Assertions.assertEquals(expectedEventDtos.get(i).getId(), receivedEventDtos.get(i).getId());
-            Assertions.assertEquals(expectedEventDtos.get(i).getArea(), receivedEventDtos.get(i).getArea());
-            Assertions.assertEquals(expectedEventDtos.get(i).getActionType(), receivedEventDtos.get(i).getActionType());
-            Assertions.assertEquals(expectedEventDtos.get(i).getCompletionTime(), receivedEventDtos.get(i).getCompletionTime());
-            Assertions.assertEquals(expectedEventDtos.get(i).isCompleted(), receivedEventDtos.get(i).isCompleted());
+            assertEquals(expectedEventDtos.get(i).getId(), receivedEventDtos.get(i).getId());
+            assertEquals(expectedEventDtos.get(i).getArea(), receivedEventDtos.get(i).getArea());
+            assertEquals(expectedEventDtos.get(i).getActionType(), receivedEventDtos.get(i).getActionType());
+            assertEquals(expectedEventDtos.get(i).getCompletionTime(), receivedEventDtos.get(i).getCompletionTime());
+            assertEquals(expectedEventDtos.get(i).isCompleted(), receivedEventDtos.get(i).isCompleted());
         }
     }
 }

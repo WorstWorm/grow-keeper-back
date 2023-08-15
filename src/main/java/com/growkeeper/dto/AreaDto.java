@@ -16,11 +16,4 @@ public class AreaDto {
     private InsolationOptions areaInsolation;
     private Boolean areaCovered;
     private String areaScientificName;
-
-//    public AreaDto(Integer areaId, InsolationOptions areaInsolation, Boolean areaCovered) {
-//        this.areaId = areaId;
-//        this.areaInsolation = areaInsolation;
-//        this.areaCovered = areaCovered;
-//        this.areaScientificName = " ";
-//    }
 }

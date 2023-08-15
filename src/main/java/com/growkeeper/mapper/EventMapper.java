@@ -12,6 +12,7 @@ public class EventMapper {
 
     public Event mapToEvent(final EventDto eventDto) {
         return new Event(
+                eventDto.getId(),
                 eventDto.getArea(),
                 eventDto.getActionType(),
                 eventDto.getCompletionTime(),

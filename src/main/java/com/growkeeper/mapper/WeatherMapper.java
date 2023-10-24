@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class WeatherMapper {
-    private static WeatherParametersConfig weatherParametersConfig;
+    private static WeatherParametersConfig weatherParametersConfig = new WeatherParametersConfig();
 
     public Weather mapToWeather(final OpenWeatherListDto openWeatherListDto) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

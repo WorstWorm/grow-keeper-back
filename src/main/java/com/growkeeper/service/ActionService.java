@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -42,11 +43,20 @@ public class ActionService implements WeatherObserver, AreaObserver {
     final Map<AreaDto, PlantDto> plantsAtAreas = new HashMap<>();
 
     private void addAreasWithPlants(List<AreaDto> areas) {
-        for(AreaDto a : areas) {
-            if(a.getAreaScientificName()!=null) {
-                plantsAtAreas.put(a, plantMapper.mapToPlantDto(plantService.getPlant(a.getAreaScientificName())));
-            }
-        }
+//        for(AreaDto a : areas) {
+//            if(a.getAreaScientificName()!=null) {
+//                plantsAtAreas.put(a, plantMapper.mapToPlantDto(plantService.getPlant(a.getAreaScientificName())));
+//            }
+//        }
+        plantsAtAreas.putAll(
+                areas.stream()
+                        .filter(areaDto -> areaDto.getAreaScientificName() != null)
+                        .collect(Collectors.toMap(
+                                area -> area,
+                                area -> plantMapper.mapToPlantDto(plantService.getPlant(area.getAreaScientificName()))
+                            )
+                        )
+        );
     }
 
     public void neededActionCheck() {
@@ -61,7 +71,6 @@ public class ActionService implements WeatherObserver, AreaObserver {
             neededActions.addAll(isColdProtectNeeded(entry.getKey().getAreaId(), incomingWeather));
             neededActions.addAll(isWateringNeeded(entry.getKey().getAreaId(), entry.getValue(), incomingWeather));
         }
-
         eventService.addEvents(eventMapper.mapToEventList(neededActions));
     }
 
